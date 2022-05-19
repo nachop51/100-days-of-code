@@ -10,6 +10,6 @@ file.close()
 
 for name in names:
     name = name.strip(' ')
-    with open(f"Output/ReadyToSend/{name[:]}", "w") as file:
+    with open(f"Output/ReadyToSend/letter_for_{name[:]}.txt", "w") as file:
         file.write(letter.replace("[name]", name))
     file.close()
