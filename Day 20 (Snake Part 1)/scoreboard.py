@@ -1,0 +1,2 @@
+class Scoreboard:
+    pass
