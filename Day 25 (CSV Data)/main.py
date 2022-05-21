@@ -1,35 +1,39 @@
-# with open("weather_data.csv") as file:
-#     lines = file.readlines()
-# file.close()
-
-# import csv
-
-# with open("weather_data.csv") as file:
-#     data = csv.reader(file)
-#     temperatures = []
-#     for row in data:
-#         if row[1] != "temp":
-#             temperatures.append(int(row[1]))
-#     print(temperatures)
-
+import turtle
 import pandas
+from print_message import PrintMessage
 
-data = pandas.read_csv("weather_data.csv",)
-# print(data)
-print(type(data))
-print(type(data["temp"]))  # Similar to a list, actually is a "series"
-# print(data["temp"])
+screen = turtle.Screen()
+screen.title("U.S States Game")
+image = "blank_states_img.gif"
+screen.addshape(image)
+turtle.shape(image)
+states = pandas.read_csv("50_states.csv")
 
-data_dict = data.to_dict()
-print(data_dict)
+message = PrintMessage()
 
-temp_list = data["temp"].to_list()
-print(temp_list)
+game_is_on = True
 
-avg = sum(temp_list) / len(temp_list)
-print(avg)
+counter = 0
+correct_guesses = []
+all_states = states.state.to_list()
+missing_states = []
+while game_is_on:
+    answer_state = screen.textinput(
+        f"{counter}/50 States Correct", "What's another state's name?")
 
+    answer_state = answer_state.title()
 
+    if answer_state in "Exit":
+        for state in all_states:
+            if state not in correct_guesses:
+                missing_states.append(state)
+        break
+    elif answer_state in correct_guesses:
+        continue
+    elif answer_state in set(states["state"]):
+        correct_guesses.append(answer_state)
+        message.print_this(states[states.state == answer_state])
+        counter += 1
 
-
-
+df = pandas.DataFrame(missing_states)
+df.to_csv("states_to_learn.csv")
