@@ -16,7 +16,6 @@ game_is_on = True
 counter = 0
 correct_guesses = []
 all_states = states.state.to_list()
-missing_states = []
 while game_is_on:
     answer_state = screen.textinput(
         f"{counter}/50 States Correct", "What's another state's name?")
@@ -24,9 +23,8 @@ while game_is_on:
     answer_state = answer_state.title()
 
     if answer_state in "Exit":
-        for state in all_states:
-            if state not in correct_guesses:
-                missing_states.append(state)
+        missing_states = [
+            state for state in all_states if state not in missing_states]
         break
     elif answer_state in correct_guesses:
         continue
