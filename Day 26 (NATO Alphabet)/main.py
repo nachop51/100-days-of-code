@@ -31,8 +31,17 @@ alphabet = {row.letter: row.code for index, row in alphabet.iterrows()}
 
 # print(alphabet)
 
-word = input("Enter a word: ").upper()
 
-list = [alphabet[letter] for letter in word]
+def generate_phonetic():
+    word = input("Enter a word: ").upper()
 
-print(list)
+    try:
+        list = [alphabet[letter] for letter in word]
+    except KeyError:
+        print("Sorry, only letters in the alphabet please!")
+        generate_phonetic()
+    else:
+        print(list)
+
+
+generate_phonetic()
