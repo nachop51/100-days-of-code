@@ -18,11 +18,10 @@ def search():
                 email = data[web]["email"]
                 password = data[web]["password"]
             else:
-                messagebox.showerror(
-                    "Error", f"Website not found")
+                messagebox.showerror("Error", f"Website not found")
                 return
         file.close()
-    except:
+    except Exception:
         print("Can't open data.json")
     else:
         messagebox.showinfo(f"{web}", f"Email: {email}\nPassowrd: {password}")
@@ -32,8 +31,12 @@ def search():
 
 
 def gen_password():
-    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-               'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    letters = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+        'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B',
+        'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+        'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    ]
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
     password_list = [choice(letters) for _ in range(randint(8, 10))]
@@ -44,6 +47,7 @@ def gen_password():
     password_input.delete(0, END)
     password_input.insert(0, password)
     pyperclip.copy(password)
+
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
@@ -62,8 +66,7 @@ def add_password():
     }
 
     if len(web) == 0 or len(password) == 0:
-        messagebox.showwarning(
-            "Oops!", "Please don't leave any fields empty!")
+        messagebox.showwarning("Oops!", "Please don't leave any fields empty!")
         return
     elif len(password) < 6:
         messagebox.showwarning("Oops!", "Password too short!")
