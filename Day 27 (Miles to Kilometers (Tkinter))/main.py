@@ -6,7 +6,7 @@ window.title("GUI Program")
 
 def calculate():
     miles = int(input.get())
-    value_label.config(text=f"{round(miles * 0.62)}")
+    value_label.config(text=f"{round(miles / 0.62)}")
 
 
 input = Entry(width=10)
