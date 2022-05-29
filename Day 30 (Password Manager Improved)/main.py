@@ -10,17 +10,17 @@ import pyperclip
 
 def search():
     web = web_input.get()
-    print(web)
+    web = web.title()
     try:
         with open("data.json", "r") as file:
             data = json.load(file)
             if web in data:
                 email = data[web]["email"]
                 password = data[web]["password"]
+                pyperclip.copy(password)
             else:
                 messagebox.showerror("Error", f"Website not found")
                 return
-        file.close()
     except Exception:
         print("Can't open data.json")
     else:
@@ -55,6 +55,7 @@ def gen_password():
 def add_password():
 
     web = web_input.get()
+    web = web.title()
     user = user_input.get()
     password = password_input.get()
 
