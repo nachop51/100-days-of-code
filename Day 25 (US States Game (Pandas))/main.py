@@ -24,7 +24,7 @@ while game_is_on:
 
     if answer_state in "Exit":
         missing_states = [
-            state for state in all_states if state not in missing_states]
+            state for state in all_states if state not in correct_guesses]
         break
     elif answer_state in correct_guesses:
         continue
