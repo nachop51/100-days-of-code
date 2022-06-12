@@ -4,6 +4,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import ElementClickInterceptedException, NoSuchElementException
 import time
 
 chrome_driver_path = "C:\Development\chromedriver.exe"
@@ -47,3 +48,30 @@ time.sleep(10)
 # Get back to the tinder window
 tinder_window = driver.window_handles[0]
 driver.switch_to.window(tinder_window)
+
+time.sleep(5)
+allow_location_button = driver.find_element_by_xpath(
+    '//*[@id="modal-manager"]/div/div/div/div/div[3]/button[1]')
+allow_location_button.click()
+notifications_button = driver.find_element_by_xpath(
+    '//*[@id="modal-manager"]/div/div/div/div/div[3]/button[2]')
+notifications_button.click()
+cookies = driver.find_element_by_xpath(
+    '//*[@id="content"]/div/div[2]/div/div/div[1]/button')
+cookies.click()
+
+for n in range(100):
+    time.sleep(1)
+    try:
+        print("called")
+        like_button = driver.find_element_by_xpath(
+            '//*[@id="content"]/div/div[1]/div/main/div[1]/div/div/div[1]/div/div[2]/div[4]/button')
+        like_button.click()
+    except ElementClickInterceptedException:
+        try:
+            match_popup = driver.find_element_by_css_selector(".itsAMatch a")
+            match_popup.click()
+        except NoSuchElementException:
+            time.sleep(2)
+
+driver.quit()
