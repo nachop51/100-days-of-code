@@ -4,10 +4,10 @@
   font-family: "Gaegu", cursive;
 }
 
-body {
-  height: 100%;
+.wrapper {
+  height: 100vh;
   background-image: url(background.jpg);
-  background-size: cover !important;
+  background-size: cover;
 }
 
 .top {
