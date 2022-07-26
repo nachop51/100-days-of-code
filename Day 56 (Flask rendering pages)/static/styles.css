@@ -78,11 +78,26 @@
 .logos a i {
   color: #111;
   transition: all 0.2s;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.fa-github {
+  background-image: linear-gradient(to right top, #612d8f, #9032ac);
+}
+
+.fa-instagram {
+  background-image: linear-gradient(to right top, #fcc95c, #c83d74, #714c99);
+}
+
+.fa-linkedin-in {
+  background-color: #01a9f0;
 }
 
 .logos a i:hover {
   transform: scale(1.2);
-  color: #666;
+  color: transparent;
+  backface-visibility: hidden;
 }
 
 .footer {
