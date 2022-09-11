@@ -89,7 +89,7 @@ def secrets():
     return render_template("secrets.html", name=current_user.name, logged_in=True)
 
 
-@ app.route('/logout')
+@app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('home'))
