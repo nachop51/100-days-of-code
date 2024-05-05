@@ -32,13 +32,13 @@ def start_timer():
     global reps
     reps += 1
     if reps % 8 == 0:
-        count_down(20 * 60)
+        count_down(LONG_BREAK_MIN * 60)
         timer_label.config(text="Long break", fg=RED)
     elif reps % 2 == 0:
-        count_down(5 * 60)
+        count_down(SHORT_BREAK_MIN * 60)
         timer_label.config(text="Short break", fg=PINK)
     else:
-        count_down(25 * 60)
+        count_down(WORK_MIN * 60)
         timer_label.config(text="Work", fg=GREEN)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
